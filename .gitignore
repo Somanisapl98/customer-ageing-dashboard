@@ -1,11 +1,2 @@
-*.xlsx
-*.xls
-.env
-Config/
-Input/
-Master/
-Logs/
-Archive/
-dashboard-data.json
-*token*
-*secret*
+*.log
+__pycache__/
