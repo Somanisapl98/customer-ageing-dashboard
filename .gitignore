@@ -1,2 +1,4 @@
 *.log
 __pycache__/
+input/*WhatsApp*.xlsx
+input/*whatsapp*.xlsx
