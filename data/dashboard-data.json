@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-04T17:02:51+05:30",
+  "updatedAt": "2026-11-04T17:09:47+05:30",
   "summary": {
     "customers": 435,
-    "outstanding": 25518323.23,
+    "outstanding": 25451065.87,
     "above30": 302,
     "above60": 231
   },
@@ -6521,17 +6521,17 @@
     {
       "Code": "DS-345",
       "Customer": "SOMANI AUTO PVT LTD RAIPUR",
-      "Outstanding": 560372.09,
+      "Outstanding": 493114.73,
       "AgeingDays": 98,
-      "OpenBills": 32,
+      "OpenBills": 33,
       "Salesman": "SOMANI",
       "Branch": "RAIPUR",
       "AgeingBand": "90+",
       "ContactPerson": "Kaustubh Mohta",
       "CreditDays": 0,
       "CreditLimit": 0,
-      "UsedCredit": 560372.09,
-      "RemainingCredit": -560372.09,
+      "UsedCredit": 493114.73,
+      "RemainingCredit": -493114.73,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
