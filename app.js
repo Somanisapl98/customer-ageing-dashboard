@@ -80,8 +80,13 @@ function renderPriorities(){
   $('priorityList').innerHTML=top.length?top.map((c,i)=>{const [label,cls]=priorityOf(c);return `<div class="priority-item" style="animation-delay:${i*.04}s"><div><div class="priority-name" title="${esc(customerOf(c))}">${esc(customerOf(c))}</div><div class="priority-meta">${esc(codeOf(c))||'No code'} · ${number(billsOf(c))} bills · ${number(daysOf(c))} days</div></div><div><div class="priority-amount">${money(amountOf(c))}</div><span class="pill pill-${cls}">${label}</span></div></div>`}).join(''):'<div class="empty-state">No matching customers.</div>';
 }
 function renderRecords(){
-  const pages=Math.max(1,Math.ceil(state.filtered.length/state.pageSize)); state.page=Math.min(state.page,pages); const start=(state.page-1)*state.pageSize, rows=state.filtered.slice(start,start+state.pageSize);
-  $('resultsCount').textContent=`${number(state.filtered.length)} records`; $('pageInfo').textContent=`Page ${state.page} of ${pages}`; $('prevBtn').disabled=state.page<=1; $('nextBtn').disabled=state.page>=pages;
+  const sortedCustomers=[...state.filtered].sort((a,b)=>
+    customerOf(a).localeCompare(customerOf(b),'en',{sensitivity:'base',numeric:true})
+  );
+  const pages=Math.max(1,Math.ceil(sortedCustomers.length/state.pageSize));
+  state.page=Math.min(state.page,pages);
+  const start=(state.page-1)*state.pageSize, rows=sortedCustomers.slice(start,start+state.pageSize);
+  $('resultsCount').textContent=`${number(sortedCustomers.length)} records`; $('pageInfo').textContent=`Page ${state.page} of ${pages}`; $('prevBtn').disabled=state.page<=1; $('nextBtn').disabled=state.page>=pages;
   $('customerRows').innerHTML=rows.length?rows.map(c=>{const [label,cls]=priorityOf(c);return `<tr><td><span class="customer-name" title="${esc(customerOf(c))}">${esc(customerOf(c))}</span><span class="customer-code">${esc(codeOf(c))}</span></td><td class="amount">${money(amountOf(c))}</td><td><span class="age-text">${number(daysOf(c))} days</span><span class="customer-code">${bandOf(c)}</span></td><td>${number(billsOf(c))}</td><td>${esc(salesmanOf(c))||'-'}</td><td>${esc(branchOf(c))||'-'}</td><td><span class="pill pill-${cls}">${label}</span></td></tr>`}).join(''):'<tr><td colspan="7"><div class="empty-state">No matching records.</div></td></tr>';
   $('mobileCards').innerHTML=rows.map(c=>{const [label,cls]=priorityOf(c);return `<article class="mobile-card"><div class="mobile-card-head"><div><h3>${esc(customerOf(c))}</h3><span class="customer-code">${esc(codeOf(c))}</span></div><div><div class="amount">${money(amountOf(c))}</div><span class="pill pill-${cls}">${label}</span></div></div><div class="mobile-card-meta"><div><span>Ageing</span><strong>${number(daysOf(c))} days</strong></div><div><span>Open bills</span><strong>${number(billsOf(c))}</strong></div><div><span>Salesman</span><strong>${esc(salesmanOf(c))||'-'}</strong></div><div><span>Branch</span><strong>${esc(branchOf(c))||'-'}</strong></div></div></article>`}).join('');
 }
