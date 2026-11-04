@@ -14,6 +14,16 @@ function branchOf(c){ return c.Branch ?? ''; }
 function bandOf(c){ const d=daysOf(c); return d<=30?'0-30':d<=60?'31-60':d<=90?'61-90':'90+'; }
 function priorityOf(c){ const d=daysOf(c); const a=amountOf(c); if(d>120||a>=500000)return ['Critical','critical']; if(d>60||a>=200000)return ['High','high']; if(d>30)return ['Watch','watch']; return ['Normal','normal']; }
 
+
+function salesmanParts(c){return Array.isArray(c.SalesmanBreakdown)?c.SalesmanBreakdown:[];}
+function customerForSalesman(c,salesman){
+  const parts=salesmanParts(c).filter(p=>String(p.Salesman||'').trim()===salesman);
+  if(!parts.length)return null;
+  const outstanding=parts.reduce((sum,p)=>sum+Number(p.Outstanding||0),0);
+  const openBills=parts.reduce((sum,p)=>sum+Number(p.OpenBills||0),0);
+  const ageingDays=Math.max(...parts.map(p=>Number(p.OldestDays||0)),0);
+  return {...c,Outstanding:outstanding,OpenBills:openBills,AgeingDays:ageingDays,AgeingBand:ageingDays<=30?'0-30':ageingDays<=60?'31-60':ageingDays<=90?'61-90':'90+',Salesman:salesman};
+}
 async function loadData(){
   setLoading(true);
   try{
@@ -34,8 +44,9 @@ async function loadData(){
 
 function setLoading(active){ $('refreshBtn').classList.toggle('spinning',active); }
 function populateFilters(){
-  fillSelect($('salesmanFilter'), [...new Set(state.all.map(salesmanOf).filter(Boolean))].sort());
-  fillSelect($('branchFilter'), [...new Set(state.all.map(branchOf).filter(Boolean))].sort());
+  const salesmen=[...new Set(state.all.flatMap(c=>salesmanParts(c).map(p=>String(p.Salesman||'').trim())).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
+  fillSelect($('salesmanFilter'),salesmen);
+  fillSelect($('branchFilter'),[...new Set(state.all.map(branchOf).filter(Boolean))].sort());
 }
 function fillSelect(select, values){ const first=select.options[0].outerHTML; select.innerHTML=first+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join(''); }
 function closeSuggestions(){const box=$('searchSuggestions');box.classList.remove('open');box.innerHTML='';}
@@ -58,8 +69,10 @@ function renderSuggestions(){
 }
 function applyFilters(){
   const q=$('searchInput').value.trim().toLowerCase(), salesman=$('salesmanFilter').value, branch=$('branchFilter').value, band=$('ageingFilter').value;
-  state.filtered=state.all.filter(c=>(!q||`${customerOf(c)} ${codeOf(c)} ${salesmanOf(c)}`.toLowerCase().includes(q))&&(!salesman||salesmanOf(c)===salesman)&&(!branch||branchOf(c)===branch)&&(!band||bandOf(c)===band));
-  state.page=1; renderAll();
+  let list=state.all;
+  if(salesman)list=list.map(c=>customerForSalesman(c,salesman)).filter(Boolean);
+  state.filtered=list.filter(c=>(!q||`${customerOf(c)} ${codeOf(c)} ${salesmanOf(c)}`.toLowerCase().includes(q))&&(!branch||branchOf(c)===branch)&&(!band||bandOf(c)===band));
+  state.page=1;renderAll();
 }
 function renderAll(){ renderKpis(); renderDistribution(); renderPriorities(); renderRecords(); }
 function renderKpis(){
