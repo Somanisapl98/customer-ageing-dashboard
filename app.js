@@ -1,23 +1,101 @@
-let raw=[],master=[],filtered=[],partySummary=[],whatsAppMap=new Map();const fmt=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0});
-const slab=d=>d<=30?'0-30':d<=60?'31-60':d<=90?'61-90':d<=120?'91-120':d<=180?'121-180':'180+';const risk=d=>d>180?'Critical':d>90?'Need Work':d>60?'Watch':'Good';const cls=p=>p==='Critical'?'high':p==='Need Work'?'medium':'low';
-async function boot(){const d=await fetch('data/dashboard-data.json').then(r=>r.json());raw=d.ageing;master=d.master;init();}
-function init(){const valid=raw.filter(r=>r['Bill No']&&r.party_code);raw=valid.map(r=>({...r,Days:+r.Days||0,'Outstanding_Amt(₹)':+r['Outstanding_Amt(₹)']||0}));fillSelect('salesman',[...new Set(raw.map(x=>x.salesman_name).filter(Boolean))]);fillSelect('branch',[...new Set(raw.map(x=>x.Branch).filter(Boolean))]);apply();}
-function fillSelect(id,vals){const e=document.getElementById(id);[...vals].sort().forEach(v=>e.add(new Option(v,v)));}
-function apply(){const q=search.value.trim().toLowerCase(),s=salesman.value,b=branch.value,a=slab.value;filtered=raw.filter(x=>(!q||[x.Customer,x.party_code,x['Bill No']].some(v=>String(v||'').toLowerCase().includes(q)))&&(!s||x.salesman_name===s)&&(!b||x.Branch===b)&&(!a||slab(x.Days)===a));summarize();render();}
-function summarize(){const m=new Map;filtered.forEach(x=>{const k=x.party_code||x.Customer;if(!m.has(k))m.set(k,{code:x.party_code,name:x.Customer,salesman:x.salesman_name,branch:x.Branch,bills:0,amt:0,days:0,rows:[]});const p=m.get(k);p.bills++;p.amt+=x['Outstanding_Amt(₹)'];p.days=Math.max(p.days,x.Days);p.rows.push(x)});partySummary=[...m.values()].sort((a,b)=>b.amt-a.amt);}
-function render(){const total=filtered.reduce((s,x)=>s+x['Outstanding_Amt(₹)'],0),over=filtered.filter(x=>x.Days>60).reduce((s,x)=>s+x['Outstanding_Amt(₹)'],0),old=Math.max(0,...filtered.map(x=>x.Days));kpis.innerHTML=[['Total outstanding',fmt.format(total)],['Parties',partySummary.length.toLocaleString('en-IN')],['Bills',filtered.length.toLocaleString('en-IN')],['Over 60 days',fmt.format(over)],['Oldest bill',old+' days']].map(x=>`<div class="kpi"><small>${x[0]}</small><strong>${x[1]}</strong></div>`).join('');renderBars();renderPriorities();renderRows();resultCount.textContent=`${partySummary.length} parties | ${filtered.length} bills`;asOn.textContent='Based on loaded report';}
-function renderBars(){const slabs=['0-30','31-60','61-90','91-120','121-180','180+'];const vals=slabs.map(s=>filtered.filter(x=>slab(x.Days)===s).reduce((a,x)=>a+x['Outstanding_Amt(₹)'],0));const mx=Math.max(1,...vals);ageBars.innerHTML=slabs.map((s,i)=>`<div class="bar-row"><b>${s}</b><div class="track"><div class="fill" style="width:${Math.max(0,vals[i]/mx*100)}%"></div></div><span>${fmt.format(vals[i])}</span></div>`).join('');}
-function renderPriorities(){priorities.innerHTML=partySummary.filter(x=>x.amt>0).slice(0,6).map(p=>`<div class="priority"><b>${p.name}</b><strong>${fmt.format(p.amt)}</strong><span>${p.code} | ${p.bills} bills</span><small class="badge ${cls(risk(p.days))}">${risk(p.days)}</small></div>`).join('')||'<p>No records</p>';}
-function renderRows(){partyRows.innerHTML=partySummary.map((p,i)=>{const c=getWA(p),ok=c&&p.amt>0&&!c.blocked;return `<tr data-i="${i}"><td><b>${p.name}</b><br><small>${p.code}</small></td><td>${p.salesman||'-'}</td><td>${p.branch||'-'}</td><td>${p.bills}</td><td class="amount">${fmt.format(p.amt)}</td><td>${p.days}</td><td><span class="badge">${slab(p.days)}</span></td><td><span class="badge ${cls(risk(p.days))}">${risk(p.days)}</span></td><td><button class="wa-btn" data-wa="${i}" ${ok?'':'disabled'}>${c?(c.blocked?'Do not contact':'Send WhatsApp'):'No mobile'}</button></td></tr>`}).join('');document.querySelectorAll('#partyRows tr').forEach(tr=>tr.onclick=e=>{if(!e.target.closest('[data-wa]'))showDetails(partySummary[+tr.dataset.i])});document.querySelectorAll('[data-wa]').forEach(b=>b.onclick=e=>{e.stopPropagation();previewWA(partySummary[+b.dataset.wa])});}
-function showDetails(p){const mm=master.find(x=>String(x.Code||'').replace(/[- ]/g,'').toUpperCase()===String(p.code||'').replace(/[- ]/g,'').toUpperCase());details.innerHTML=`<h2>${p.name}</h2><p>${p.code} | ${p.salesman||'-'} | ${p.branch||'-'}</p><div class="detail-kpis"><div><small>Outstanding</small><strong>${fmt.format(p.amt)}</strong></div><div><small>Pending bills</small><strong>${p.bills}</strong></div><div><small>Oldest</small><strong>${p.days} days</strong></div><div><small>Credit days</small><strong>${mm?.['Cr Days']??'-'}</strong></div></div><div class="notice">Collection status: <b>${risk(p.days)}</b>. Review oldest bills first and follow up on the highest outstanding amounts.</div><div class="table-wrap"><table><thead><tr><th>Bill no</th><th>Date</th><th>Days</th><th>Bill amount</th><th>Outstanding</th></tr></thead><tbody>${p.rows.sort((a,b)=>b.Days-a.Days).map(x=>`<tr><td>${x['Bill No']}</td><td>${String(x['Bill Date']||'').slice(0,10)}</td><td>${x.Days}</td><td>${fmt.format(+x['Bill_Amt(₹)']||0)}</td><td>${fmt.format(x['Outstanding_Amt(₹)'])}</td></tr>`).join('')}</tbody></table></div>`;detailDialog.showModal();}
-function csv(){const rows=[['Party Code','Customer','Salesman','Branch','Bills','Outstanding','Oldest Days','Slab','Priority'],...partySummary.map(p=>[p.code,p.name,p.salesman,p.branch,p.bills,p.amt,p.days,slab(p.days),risk(p.days)])];const blob=new Blob([rows.map(r=>r.map(v=>`"${String(v??'').replaceAll('"','""')}"`).join(',')).join('\n')],{type:'text/csv'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='customer-ageing-filtered.csv';a.click();URL.revokeObjectURL(a.href);}
-async function excel(ev){const f=ev.target.files[0];if(!f)return;const wb=XLSX.read(await f.arrayBuffer(),{type:'array',cellDates:true});const arr=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,defval:''});const hi=arr.findIndex(r=>r.includes('Bill No')&&r.includes('party_code'));if(hi<0){alert('Required ageing headers were not found.');return}const h=arr[hi];raw=arr.slice(hi+1).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]]))).filter(x=>x['Bill No']&&x.party_code);init();}
+const $ = id => document.getElementById(id);
+const state = { all: [], filtered: [], page: 1, pageSize: 6 };
+const money = value => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Number(value||0));
+const number = value => new Intl.NumberFormat('en-IN',{maximumFractionDigits:0}).format(Number(value||0));
+const esc = value => String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 
-const waNorm=v=>String(v??'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');
-const waDigits=v=>String(v??'').replace(/\D/g,'');
-function getWA(p){return whatsAppMap.get(waNorm(p.code))||whatsAppMap.get(waNorm(p.name));}
-function waMessage(p){return `Hello ${p.name},\n\nThis is a reminder regarding your outstanding account with Somani Auto Private Limited.\n\nOutstanding amount: ${fmt.format(p.amt)}\nPending bills: ${p.bills}\nOldest pending bill: ${p.days} days\n\nPlease contact ${p.salesman||'your assigned representative'} for bill details or payment confirmation.\n\nIf payment has already been made, please disregard this message.`;}
-function previewWA(p){const c=getWA(p);if(!c||c.blocked)return;const msg=waMessage(p),masked=c.mobile.slice(0,4)+'******'+c.mobile.slice(-2);details.innerHTML=`<h2>WhatsApp reminder preview</h2><p><b>${p.name}</b> | ${masked}</p><div class="preview-message">${msg}</div><p class="privacy-note">Review the recipient and message. WhatsApp opens with the message prefilled; click Send in WhatsApp.</p><div class="preview-actions"><button id="openWA" class="whatsapp">Open WhatsApp</button><button id="cancelWA" class="secondary">Cancel</button></div>`;detailDialog.showModal();openWA.onclick=()=>{window.open(`https://wa.me/${c.mobile}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');detailDialog.close()};cancelWA.onclick=()=>detailDialog.close();}
-async function loadWAMaster(ev){const f=ev.target.files[0];if(!f)return;try{const wb=XLSX.read(await f.arrayBuffer(),{type:'array'}),rows=XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''}),map=new Map();let valid=0,skipped=0;rows.forEach(r=>{const code=r.PartyCode||r['Party Code']||r.party_code||r.Code,name=r.CustomerName||r.Customer||r.Name;let mobile=waDigits(r.MobileNumber||r.Mobile||r['Mobile Number']||r.Phone||r.Contact);if(mobile.length===10)mobile='91'+mobile;const blocked=String(r.DoNotContact||r['Do Not Contact']||'No').toLowerCase()==='yes';if((code||name)&&mobile.length>=11&&mobile.length<=15){const x={mobile,blocked};if(code)map.set(waNorm(code),x);if(name)map.set(waNorm(name),x);valid++}else skipped++});whatsAppMap=map;alert(`WhatsApp Master loaded locally. Valid: ${valid}. Skipped: ${skipped}.`);render()}catch(e){console.error(e);alert('Could not read WhatsApp Master. Use PartyCode, CustomerName and MobileNumber columns.')}ev.target.value='';}
+function amountOf(c){ return Number(c.Outstanding ?? c.Ageing_Outstanding ?? c.OutstandingAmount ?? 0); }
+function daysOf(c){ return Number(c.AgeingDays ?? c.Oldest_Days ?? c.Days ?? 0); }
+function billsOf(c){ return Number(c.OpenBills ?? c.Open_Bills ?? c.Bills ?? 0); }
+function codeOf(c){ return c.Code ?? c.party_code ?? c.CustomerCode ?? ''; }
+function customerOf(c){ return c.Customer ?? c.CustomerName ?? c.Name ?? 'Unknown'; }
+function salesmanOf(c){ return c.Salesman ?? c.salesman_name ?? ''; }
+function branchOf(c){ return c.Branch ?? ''; }
+function bandOf(c){ const d=daysOf(c); return d<=30?'0-30':d<=60?'31-60':d<=90?'61-90':'90+'; }
+function priorityOf(c){ const d=daysOf(c); const a=amountOf(c); if(d>120||a>=500000)return ['Critical','critical']; if(d>60||a>=200000)return ['High','high']; if(d>30)return ['Watch','watch']; return ['Normal','normal']; }
 
-['search','salesman','branch','slab'].forEach(id=>document.getElementById(id).addEventListener(id==='search'?'input':'change',apply));reset.onclick=()=>{search.value=salesman.value=branch.value=slab.value='';apply()};uploadBtn.onclick=()=>fileInput.click();fileInput.onchange=excel;whatsAppMasterBtn.onclick=()=>whatsAppMasterInput.click();whatsAppMasterInput.onchange=loadWAMaster;exportBtn.onclick=csv;closeDialog.onclick=()=>detailDialog.close();boot().catch(e=>{document.body.innerHTML+='<p style="padding:20px">Run start_dashboard.cmd to load the dashboard locally.</p>';console.error(e)});
+async function loadData(){
+  setLoading(true);
+  try{
+    const response = await fetch(`data/dashboard-data.json?v=${Date.now()}`, {cache:'no-store'});
+    if(!response.ok) throw new Error('Latest dashboard data could not be loaded.');
+    const payload = await response.json();
+    state.all = Array.isArray(payload.customers) ? payload.customers : [];
+    const stamp = payload.updatedAt ? new Date(payload.updatedAt) : null;
+    $('updatedAt').textContent = stamp && !Number.isNaN(stamp.getTime()) ? `Last refresh: ${stamp.toLocaleString('en-IN')}` : 'Latest report loaded';
+    populateFilters();
+    applyFilters();
+  }catch(error){
+    $('customerRows').innerHTML = `<tr><td colspan="7"><div class="empty-state">${esc(error.message)}</div></td></tr>`;
+    $('mobileCards').innerHTML = `<div class="empty-state">${esc(error.message)}</div>`;
+    showToast(error.message);
+  }finally{ setLoading(false); }
+}
+
+function setLoading(active){ $('refreshBtn').classList.toggle('spinning',active); }
+function populateFilters(){
+  fillSelect($('salesmanFilter'), [...new Set(state.all.map(salesmanOf).filter(Boolean))].sort());
+  fillSelect($('branchFilter'), [...new Set(state.all.map(branchOf).filter(Boolean))].sort());
+}
+function fillSelect(select, values){ const first=select.options[0].outerHTML; select.innerHTML=first+values.map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join(''); }
+function closeSuggestions(){const box=$('searchSuggestions');box.classList.remove('open');box.innerHTML='';}
+function positionSuggestions(){
+  const input=$('searchInput'),box=$('searchSuggestions'),r=input.getBoundingClientRect();
+  box.style.left=`${Math.round(r.left)}px`;box.style.top=`${Math.round(r.bottom+7)}px`;box.style.width=`${Math.round(r.width)}px`;
+}
+function renderSuggestions(){
+  const box=$('searchSuggestions'),q=$('searchInput').value.trim().toLowerCase();
+  if(q.length<1){closeSuggestions();return;}
+  const seen=new Set();
+  const matches=state.all.filter(c=>{
+    const key=customerOf(c).toLowerCase();
+    const ok=`${customerOf(c)} ${codeOf(c)} ${salesmanOf(c)}`.toLowerCase().includes(q);
+    if(!ok||seen.has(key))return false;seen.add(key);return true;
+  }).slice(0,8);
+  if(!matches.length){box.innerHTML='<div class="suggestion-empty">No matching customer</div>';positionSuggestions();box.classList.add('open');return;}
+  box.innerHTML=matches.map(c=>`<button type="button" role="option" data-suggestion="${esc(customerOf(c))}"><span class="suggestion-main"><strong>${esc(customerOf(c))}</strong><small>${esc(codeOf(c))||'No code'}</small></span><span class="suggestion-meta">${money(amountOf(c))}<small>${number(daysOf(c))} days</small></span></button>`).join('');
+  positionSuggestions();box.classList.add('open');
+}
+function applyFilters(){
+  const q=$('searchInput').value.trim().toLowerCase(), salesman=$('salesmanFilter').value, branch=$('branchFilter').value, band=$('ageingFilter').value;
+  state.filtered=state.all.filter(c=>(!q||`${customerOf(c)} ${codeOf(c)} ${salesmanOf(c)}`.toLowerCase().includes(q))&&(!salesman||salesmanOf(c)===salesman)&&(!branch||branchOf(c)===branch)&&(!band||bandOf(c)===band));
+  state.page=1; renderAll();
+}
+function renderAll(){ renderKpis(); renderDistribution(); renderPriorities(); renderRecords(); }
+function renderKpis(){
+  const list=state.filtered, total=list.reduce((s,c)=>s+amountOf(c),0), bills=list.reduce((s,c)=>s+billsOf(c),0), over60=list.filter(c=>daysOf(c)>60), oldest=[...list].sort((a,b)=>daysOf(b)-daysOf(a))[0];
+  $('totalOutstanding').textContent=money(total); $('totalCustomers').textContent=number(list.length); $('totalBills').textContent=number(bills);
+  $('above60Amount').textContent=money(over60.reduce((s,c)=>s+amountOf(c),0)); $('above60Customers').textContent=`${number(over60.length)} customers`;
+  $('oldestDays').textContent=oldest?`${number(daysOf(oldest))} days`:'0 days'; $('oldestCustomer').textContent=oldest?customerOf(oldest):'No data';
+  $('filteredNote').textContent=list.length===state.all.length?'Across all customers':`Filtered from ${number(state.all.length)} customers`;
+}
+function renderDistribution(){
+  const bands=[['0-30',0,30],['31-60',31,60],['61-90',61,90],['91-120',91,120],['121-180',121,180],['180+',181,Infinity]];
+  const totals=bands.map(([label,min,max])=>[label,state.filtered.filter(c=>daysOf(c)>=min&&daysOf(c)<=max).reduce((s,c)=>s+amountOf(c),0)]), max=Math.max(...totals.map(x=>x[1]),1);
+  $('distributionBars').innerHTML=totals.map(([label,value])=>`<div class="bar-row"><span class="bar-label">${label}</span><div class="bar-track"><div class="bar-fill" data-width="${(value/max)*100}"></div></div><span class="bar-value">${money(value)}</span></div>`).join('');
+  requestAnimationFrame(()=>document.querySelectorAll('.bar-fill').forEach(el=>el.style.width=`${el.dataset.width}%`));
+}
+function renderPriorities(){
+  const top=[...state.filtered].sort((a,b)=>amountOf(b)-amountOf(a)).slice(0,7);
+  $('priorityList').innerHTML=top.length?top.map((c,i)=>{const [label,cls]=priorityOf(c);return `<div class="priority-item" style="animation-delay:${i*.04}s"><div><div class="priority-name" title="${esc(customerOf(c))}">${esc(customerOf(c))}</div><div class="priority-meta">${esc(codeOf(c))||'No code'} · ${number(billsOf(c))} bills · ${number(daysOf(c))} days</div></div><div><div class="priority-amount">${money(amountOf(c))}</div><span class="pill pill-${cls}">${label}</span></div></div>`}).join(''):'<div class="empty-state">No matching customers.</div>';
+}
+function renderRecords(){
+  const pages=Math.max(1,Math.ceil(state.filtered.length/state.pageSize)); state.page=Math.min(state.page,pages); const start=(state.page-1)*state.pageSize, rows=state.filtered.slice(start,start+state.pageSize);
+  $('resultsCount').textContent=`${number(state.filtered.length)} records`; $('pageInfo').textContent=`Page ${state.page} of ${pages}`; $('prevBtn').disabled=state.page<=1; $('nextBtn').disabled=state.page>=pages;
+  $('customerRows').innerHTML=rows.length?rows.map(c=>{const [label,cls]=priorityOf(c);return `<tr><td><span class="customer-name" title="${esc(customerOf(c))}">${esc(customerOf(c))}</span><span class="customer-code">${esc(codeOf(c))}</span></td><td class="amount">${money(amountOf(c))}</td><td><span class="age-text">${number(daysOf(c))} days</span><span class="customer-code">${bandOf(c)}</span></td><td>${number(billsOf(c))}</td><td>${esc(salesmanOf(c))||'-'}</td><td>${esc(branchOf(c))||'-'}</td><td><span class="pill pill-${cls}">${label}</span></td></tr>`}).join(''):'<tr><td colspan="7"><div class="empty-state">No matching records.</div></td></tr>';
+  $('mobileCards').innerHTML=rows.map(c=>{const [label,cls]=priorityOf(c);return `<article class="mobile-card"><div class="mobile-card-head"><div><h3>${esc(customerOf(c))}</h3><span class="customer-code">${esc(codeOf(c))}</span></div><div><div class="amount">${money(amountOf(c))}</div><span class="pill pill-${cls}">${label}</span></div></div><div class="mobile-card-meta"><div><span>Ageing</span><strong>${number(daysOf(c))} days</strong></div><div><span>Open bills</span><strong>${number(billsOf(c))}</strong></div><div><span>Salesman</span><strong>${esc(salesmanOf(c))||'-'}</strong></div><div><span>Branch</span><strong>${esc(branchOf(c))||'-'}</strong></div></div></article>`}).join('');
+}
+function exportCsv(){
+  const headers=['Code','Customer','Outstanding','Ageing Days','Open Bills','Salesman','Branch','Priority'];
+  const rows=state.filtered.map(c=>[codeOf(c),customerOf(c),amountOf(c),daysOf(c),billsOf(c),salesmanOf(c),branchOf(c),priorityOf(c)[0]]);
+  const csv=[headers,...rows].map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}), url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url;a.download=`customer-ageing-filtered-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url);showToast('Filtered CSV exported.');
+}
+function resetFilters(){ $('searchInput').value='';$('salesmanFilter').value='';$('branchFilter').value='';$('ageingFilter').value='';applyFilters(); }
+function showToast(message){const t=$('toast');t.textContent=message;t.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove('show'),2500);}
+['salesmanFilter','branchFilter','ageingFilter'].forEach(id=>$(id).addEventListener('change',applyFilters)); $('searchInput').addEventListener('input',()=>{renderSuggestions();applyFilters();});
+$('searchInput').addEventListener('focus',renderSuggestions);
+document.addEventListener('click',e=>{const pick=e.target.closest('[data-suggestion]');if(pick){$('searchInput').value=pick.dataset.suggestion;closeSuggestions();applyFilters();return;}if(!e.target.closest('.search-field')&&!e.target.closest('#searchSuggestions'))closeSuggestions();});
+$('pageSize').addEventListener('change',()=>{state.pageSize=Number($('pageSize').value);state.page=1;renderRecords();});
+window.addEventListener('resize',()=>{if($('searchSuggestions').classList.contains('open'))positionSuggestions();});
+window.addEventListener('scroll',closeSuggestions,{passive:true}); $('resetBtn').addEventListener('click',resetFilters); $('refreshBtn').addEventListener('click',loadData); $('exportBtn').addEventListener('click',exportCsv); $('prevBtn').addEventListener('click',()=>{if(state.page>1){state.page--;renderRecords();scrollToRecords();}}); $('nextBtn').addEventListener('click',()=>{if(state.page*state.pageSize<state.filtered.length){state.page++;renderRecords();scrollToRecords();}}); function scrollToRecords(){document.querySelector('.records-panel').scrollIntoView({behavior:'smooth',block:'start'});} loadData();
