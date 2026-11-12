@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-12T10:01:32+05:30",
+  "updatedAt": "2026-11-12T12:23:23+05:30",
   "summary": {
-    "customers": 434,
-    "outstanding": 26133636.2,
-    "above30": 326,
-    "above60": 235
+    "customers": 431,
+    "outstanding": 25792443.88,
+    "above30": 324,
+    "above60": 234
   },
   "customers": [
     {
@@ -1262,31 +1262,25 @@
     {
       "Code": "DB-112",
       "Customer": "BHILAI AUTO AGENCY , DURG",
-      "Outstanding": 120281.0,
-      "AgeingDays": 145,
-      "OpenBills": 9,
+      "Outstanding": 70281.0,
+      "AgeingDays": 114,
+      "OpenBills": 4,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
-          "Salesman": "Default",
-          "Outstanding": 44552.0,
-          "OpenBills": 5,
-          "OldestDays": 145
-        },
-        {
           "Salesman": "ZUBER AHMAD",
-          "Outstanding": 75729.0,
+          "Outstanding": 70281.0,
           "OpenBills": 4,
           "OldestDays": 114
         }
       ],
-      "Salesman": "Multiple",
+      "Salesman": "ZUBER AHMAD",
       "AgeingBand": "90+",
       "ContactPerson": "inderjeet singh suri",
       "CreditDays": 60,
       "CreditLimit": 102000.0,
-      "UsedCredit": 120281.0,
-      "RemainingCredit": -18281.0,
+      "UsedCredit": 70281.0,
+      "RemainingCredit": 31719.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -1387,31 +1381,6 @@
       "CreditLimit": 50000.0,
       "UsedCredit": 8496.0,
       "RemainingCredit": 41504.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
-      "Code": "DB-123",
-      "Customer": "BULKTAINER SHIPPING LIMITED",
-      "Outstanding": 15436.0,
-      "AgeingDays": 5,
-      "OpenBills": 1,
-      "Branch": "RAIPUR",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "MURTI",
-          "Outstanding": 15436.0,
-          "OpenBills": 1,
-          "OldestDays": 5
-        }
-      ],
-      "Salesman": "MURTI",
-      "AgeingBand": "0-30",
-      "ContactPerson": "BULKTAINER SHIPPING LIMITED",
-      "CreditDays": 60,
-      "CreditLimit": 50000.0,
-      "UsedCredit": 15436.0,
-      "RemainingCredit": 34564.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -1623,31 +1592,6 @@
       "CreditLimit": 122000.0,
       "UsedCredit": 59010.0,
       "RemainingCredit": 62990.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
-      "Code": "DC-034",
-      "Customer": "CHHATTISGARH TURBO POWER BREAK REPAIRING AND SALES KORBA",
-      "Outstanding": 29712.0,
-      "AgeingDays": 8,
-      "OpenBills": 1,
-      "Branch": "RAIPUR",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "PAWAR",
-          "Outstanding": 29712.0,
-          "OpenBills": 1,
-          "OldestDays": 8
-        }
-      ],
-      "Salesman": "PAWAR",
-      "AgeingBand": "0-30",
-      "ContactPerson": "mohhamed naiyar hasan",
-      "CreditDays": 60,
-      "CreditLimit": 175000.0,
-      "UsedCredit": 29712.0,
-      "RemainingCredit": 145288.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -5524,7 +5468,7 @@
     {
       "Code": "DM-042",
       "Customer": "MANJEET MOTORS ,RAIPUR",
-      "Outstanding": 400324.16,
+      "Outstanding": 375324.16,
       "AgeingDays": 174,
       "OpenBills": 17,
       "Branch": "RAIPUR",
@@ -5537,7 +5481,7 @@
         },
         {
           "Salesman": "Default",
-          "Outstanding": 79418.16,
+          "Outstanding": 54418.16,
           "OpenBills": 3,
           "OldestDays": 174
         },
@@ -5571,8 +5515,8 @@
       "ContactPerson": "MANJEET SING SALUJA",
       "CreditDays": 60,
       "CreditLimit": 283000.0,
-      "UsedCredit": 400324.16,
-      "RemainingCredit": -117324.15999999997,
+      "UsedCredit": 375324.16,
+      "RemainingCredit": -92324.15999999997,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -6830,31 +6774,6 @@
       "Mobile": ""
     },
     {
-      "Code": "DP-051",
-      "Customer": "PRAGAT LOGISTICS RAJNANDGAON",
-      "Outstanding": 74000.0,
-      "AgeingDays": 68,
-      "OpenBills": 2,
-      "Branch": "RAIPUR",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "SHEKHAR SAHU",
-          "Outstanding": 74000.0,
-          "OpenBills": 2,
-          "OldestDays": 68
-        }
-      ],
-      "Salesman": "SHEKHAR SAHU",
-      "AgeingBand": "61-90",
-      "ContactPerson": "pragatraj singh bhatia",
-      "CreditDays": 60,
-      "CreditLimit": 96000.0,
-      "UsedCredit": 74000.0,
-      "RemainingCredit": 22000.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
       "Code": "DP-015",
       "Customer": "PRAKASH MOTORS  BILASPUR",
       "Outstanding": 301584.0,
@@ -6913,22 +6832,16 @@
     {
       "Code": "DP-033",
       "Customer": "PREET AUTOMOBILES, ARANG",
-      "Outstanding": 170800.0,
-      "AgeingDays": 47,
-      "OpenBills": 4,
+      "Outstanding": 18950.0,
+      "AgeingDays": 19,
+      "OpenBills": 2,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "RAHUL KUMAR GAJBHIYE",
-          "Outstanding": 4300.0,
-          "OpenBills": 2,
-          "OldestDays": 26
-        },
-        {
-          "Salesman": "S.K.THAKUR",
-          "Outstanding": 151000.0,
+          "Outstanding": 3450.0,
           "OpenBills": 1,
-          "OldestDays": 47
+          "OldestDays": 8
         },
         {
           "Salesman": "SIMON MASIH",
@@ -6938,12 +6851,12 @@
         }
       ],
       "Salesman": "Multiple",
-      "AgeingBand": "31-60",
+      "AgeingBand": "0-30",
       "ContactPerson": "preet automobiles",
       "CreditDays": 60,
       "CreditLimit": 200000.0,
-      "UsedCredit": 170800.0,
-      "RemainingCredit": 29200.0,
+      "UsedCredit": 18950.0,
+      "RemainingCredit": 181050.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -8988,17 +8901,11 @@
     {
       "Code": "DS-038",
       "Customer": "SHIV SHANKAR AUTO PARTS - RAIGARH",
-      "Outstanding": 21158.0,
-      "AgeingDays": 103,
-      "OpenBills": 4,
+      "Outstanding": 20788.0,
+      "AgeingDays": 82,
+      "OpenBills": 3,
       "Branch": "RAIGARH",
       "SalesmanBreakdown": [
-        {
-          "Salesman": "MURTI",
-          "Outstanding": 370.0,
-          "OpenBills": 1,
-          "OldestDays": 103
-        },
         {
           "Salesman": "YOGESH PARIHAR",
           "Outstanding": 20788.0,
@@ -9006,13 +8913,13 @@
           "OldestDays": 82
         }
       ],
-      "Salesman": "Multiple",
-      "AgeingBand": "90+",
+      "Salesman": "YOGESH PARIHAR",
+      "AgeingBand": "61-90",
       "ContactPerson": "UTKARSH AGRAWAL",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 21158.0,
-      "RemainingCredit": 28842.0,
+      "UsedCredit": 20788.0,
+      "RemainingCredit": 29212.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -10402,9 +10309,9 @@
     {
       "Code": "DS-345",
       "Customer": "SOMANI AUTO PVT LTD RAIPUR",
-      "Outstanding": 623903.06,
+      "Outstanding": 639042.74,
       "AgeingDays": 106,
-      "OpenBills": 45,
+      "OpenBills": 46,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -10415,8 +10322,8 @@
         },
         {
           "Salesman": "Unassigned",
-          "Outstanding": 623891.06,
-          "OpenBills": 40,
+          "Outstanding": 639030.74,
+          "OpenBills": 41,
           "OldestDays": 106
         }
       ],
@@ -10425,8 +10332,8 @@
       "ContactPerson": "Kaustubh Mohta",
       "CreditDays": 0,
       "CreditLimit": 0,
-      "UsedCredit": 623903.06,
-      "RemainingCredit": -623903.06,
+      "UsedCredit": 639042.74,
+      "RemainingCredit": -639042.74,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -10489,9 +10396,9 @@
     {
       "Code": "DS-103",
       "Customer": "SONI AUTO DEALERS , BHILAI",
-      "Outstanding": 223360.0,
+      "Outstanding": 244603.0,
       "AgeingDays": 44,
-      "OpenBills": 15,
+      "OpenBills": 16,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -10502,8 +10409,8 @@
         },
         {
           "Salesman": "PAWAR",
-          "Outstanding": 33512.0,
-          "OpenBills": 1,
+          "Outstanding": 54755.0,
+          "OpenBills": 2,
           "OldestDays": 24
         },
         {
@@ -10524,8 +10431,8 @@
       "ContactPerson": "NARENDRA SONI",
       "CreditDays": 60,
       "CreditLimit": 250000.0,
-      "UsedCredit": 223360.0,
-      "RemainingCredit": 26640.0,
+      "UsedCredit": 244603.0,
+      "RemainingCredit": 5397.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -11043,14 +10950,14 @@
     {
       "Code": "DT-005",
       "Customer": "TIRUPATI BALAJI SPARES, Dipka",
-      "Outstanding": 51214.0,
+      "Outstanding": 20007.0,
       "AgeingDays": 149,
       "OpenBills": 2,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "Default",
-          "Outstanding": 51214.0,
+          "Outstanding": 20007.0,
           "OpenBills": 2,
           "OldestDays": 149
         }
@@ -11060,8 +10967,8 @@
       "ContactPerson": "ASHOK KUMAR JAISWAL",
       "CreditDays": 60,
       "CreditLimit": 82000.0,
-      "UsedCredit": 51214.0,
-      "RemainingCredit": 30786.0,
+      "UsedCredit": 20007.0,
+      "RemainingCredit": 61993.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
