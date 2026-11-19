@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-11-19T10:01:43+05:30",
+  "updatedAt": "2026-11-19T13:00:22+05:30",
   "summary": {
     "customers": 449,
-    "outstanding": 27211786.83,
-    "above30": 348,
+    "outstanding": 27156003.15,
+    "above30": 347,
     "above60": 243
   },
   "customers": [
@@ -5381,25 +5381,25 @@
     {
       "Code": "DM-104",
       "Customer": "MAA BANJARI POWER STEERING RAIGARH",
-      "Outstanding": 37050.0,
-      "AgeingDays": 43,
-      "OpenBills": 3,
+      "Outstanding": 15000.0,
+      "AgeingDays": 15,
+      "OpenBills": 2,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "PAWAR",
-          "Outstanding": 37050.0,
-          "OpenBills": 3,
-          "OldestDays": 43
+          "Outstanding": 15000.0,
+          "OpenBills": 2,
+          "OldestDays": 15
         }
       ],
       "Salesman": "PAWAR",
-      "AgeingBand": "31-60",
+      "AgeingBand": "0-30",
       "ContactPerson": "UMESH SINGH",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 37050.0,
-      "RemainingCredit": 12950.0,
+      "UsedCredit": 15000.0,
+      "RemainingCredit": 35000.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -6609,15 +6609,15 @@
     {
       "Code": "DN-050",
       "Customer": "NITYA MOTOR PARTS",
-      "Outstanding": 174240.0,
+      "Outstanding": 175960.0,
       "AgeingDays": 36,
-      "OpenBills": 4,
+      "OpenBills": 5,
       "Branch": "RAIGARH",
       "SalesmanBreakdown": [
         {
           "Salesman": "YOGESH PARIHAR",
-          "Outstanding": 174240.0,
-          "OpenBills": 4,
+          "Outstanding": 175960.0,
+          "OpenBills": 5,
           "OldestDays": 36
         }
       ],
@@ -6626,8 +6626,8 @@
       "ContactPerson": "PREETI SINGH",
       "CreditDays": 60,
       "CreditLimit": 200000.0,
-      "UsedCredit": 174240.0,
-      "RemainingCredit": 25760.0,
+      "UsedCredit": 175960.0,
+      "RemainingCredit": 24040.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -6871,9 +6871,9 @@
     {
       "Code": "DP-004",
       "Customer": "PAL MOTORS ,RAIPUR",
-      "Outstanding": 26505.0,
+      "Outstanding": 31335.0,
       "AgeingDays": 59,
-      "OpenBills": 5,
+      "OpenBills": 6,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -6884,8 +6884,8 @@
         },
         {
           "Salesman": "MANOJ CHAUHAN",
-          "Outstanding": 11005.0,
-          "OpenBills": 4,
+          "Outstanding": 15835.0,
+          "OpenBills": 5,
           "OldestDays": 57
         }
       ],
@@ -6894,8 +6894,8 @@
       "ContactPerson": "HARPREET SINGH BINDRA",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 26505.0,
-      "RemainingCredit": 23495.0,
+      "UsedCredit": 31335.0,
+      "RemainingCredit": 18665.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -7942,9 +7942,9 @@
     {
       "Code": "DR-119",
       "Customer": "RAJU AUTO ENGG",
-      "Outstanding": 27364.0,
+      "Outstanding": 36680.0,
       "AgeingDays": 39,
-      "OpenBills": 1,
+      "OpenBills": 2,
       "Branch": "KORBA",
       "SalesmanBreakdown": [
         {
@@ -7952,15 +7952,21 @@
           "Outstanding": 27364.0,
           "OpenBills": 1,
           "OldestDays": 39
+        },
+        {
+          "Salesman": "NITIN SHUKLA",
+          "Outstanding": 9316.0,
+          "OpenBills": 1,
+          "OldestDays": 0
         }
       ],
-      "Salesman": "Default",
+      "Salesman": "Multiple",
       "AgeingBand": "31-60",
       "ContactPerson": "",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 27364.0,
-      "RemainingCredit": 22636.0,
+      "UsedCredit": 36680.0,
+      "RemainingCredit": 13320.0,
       "GSTCategory": "Unregistered",
       "Mobile": ""
     },
@@ -10776,9 +10782,9 @@
     {
       "Code": "DS-345",
       "Customer": "SOMANI AUTO PVT LTD RAIPUR",
-      "Outstanding": 540905.69,
+      "Outstanding": 491306.01,
       "AgeingDays": 113,
-      "OpenBills": 45,
+      "OpenBills": 47,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -10789,8 +10795,8 @@
         },
         {
           "Salesman": "Unassigned",
-          "Outstanding": 540887.69,
-          "OpenBills": 39,
+          "Outstanding": 491288.01,
+          "OpenBills": 41,
           "OldestDays": 113
         }
       ],
@@ -10799,8 +10805,8 @@
       "ContactPerson": "Kaustubh Mohta",
       "CreditDays": 0,
       "CreditLimit": 0,
-      "UsedCredit": 574835.69,
-      "RemainingCredit": -574835.69,
+      "UsedCredit": 525236.01,
+      "RemainingCredit": -525236.01,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
