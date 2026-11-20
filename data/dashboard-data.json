@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-11-20T10:01:29+05:30",
+  "updatedAt": "2026-11-20T12:43:47+05:30",
   "summary": {
-    "customers": 453,
-    "outstanding": 27244316.15,
-    "above30": 347,
-    "above60": 241
+    "customers": 451,
+    "outstanding": 27074837.15,
+    "above30": 345,
+    "above60": 239
   },
   "customers": [
     {
@@ -422,9 +422,9 @@
     {
       "Code": "DA-069",
       "Customer": "AMIT MOTORS RAIPUR",
-      "Outstanding": 19660.0,
+      "Outstanding": 28129.0,
       "AgeingDays": 29,
-      "OpenBills": 4,
+      "OpenBills": 5,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -440,6 +440,12 @@
           "OldestDays": 29
         },
         {
+          "Salesman": "PAWAR",
+          "Outstanding": 8469.0,
+          "OpenBills": 1,
+          "OldestDays": 0
+        },
+        {
           "Salesman": "RAHUL KUMAR GAJBHIYE",
           "Outstanding": 2933.0,
           "OpenBills": 1,
@@ -451,8 +457,8 @@
       "ContactPerson": "AMIT KUMAR PARPANI",
       "CreditDays": 60,
       "CreditLimit": 200000.0,
-      "UsedCredit": 19660.0,
-      "RemainingCredit": 180340.0,
+      "UsedCredit": 28129.0,
+      "RemainingCredit": 171871.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -484,31 +490,31 @@
     {
       "Code": "DA-027",
       "Customer": "ANAND AGENCIES KORBA",
-      "Outstanding": 145472.0,
-      "AgeingDays": 73,
-      "OpenBills": 4,
+      "Outstanding": 93790.0,
+      "AgeingDays": 36,
+      "OpenBills": 3,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
-          "Salesman": "RAHUL KUMAR GAJBHIYE",
-          "Outstanding": 144414.0,
-          "OpenBills": 3,
-          "OldestDays": 73
+          "Salesman": "MURTI",
+          "Outstanding": 4354.0,
+          "OpenBills": 1,
+          "OldestDays": 0
         },
         {
-          "Salesman": "RAMADHAR GUPTA",
-          "Outstanding": 1058.0,
-          "OpenBills": 1,
-          "OldestDays": 58
+          "Salesman": "RAHUL KUMAR GAJBHIYE",
+          "Outstanding": 89436.0,
+          "OpenBills": 2,
+          "OldestDays": 36
         }
       ],
       "Salesman": "Multiple",
-      "AgeingBand": "61-90",
+      "AgeingBand": "31-60",
       "ContactPerson": "ANAND RAJINDER SINGH",
       "CreditDays": 60,
       "CreditLimit": 160000.0,
-      "UsedCredit": 145472.0,
-      "RemainingCredit": 14528.0,
+      "UsedCredit": 93790.0,
+      "RemainingCredit": 66210.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -1665,31 +1671,6 @@
       "Mobile": ""
     },
     {
-      "Code": "DC-034",
-      "Customer": "CHHATTISGARH TURBO POWER BREAK REPAIRING AND SALES KORBA",
-      "Outstanding": 11490.0,
-      "AgeingDays": 2,
-      "OpenBills": 1,
-      "Branch": "RAIPUR",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "PAWAR",
-          "Outstanding": 11490.0,
-          "OpenBills": 1,
-          "OldestDays": 2
-        }
-      ],
-      "Salesman": "PAWAR",
-      "AgeingBand": "0-30",
-      "ContactPerson": "mohhamed naiyar hasan",
-      "CreditDays": 60,
-      "CreditLimit": 175000.0,
-      "UsedCredit": 11490.0,
-      "RemainingCredit": 163510.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
       "Code": "DC-044",
       "Customer": "CHHEDI AUTO CENTER AND SPARE PARTS",
       "Outstanding": 42590.0,
@@ -1823,31 +1804,6 @@
       "CreditLimit": 3723000.0,
       "UsedCredit": 1866580.0,
       "RemainingCredit": 1856420.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
-      "Code": "DD-050",
-      "Customer": "D M MOTORS RAIGHAR",
-      "Outstanding": 33201.0,
-      "AgeingDays": 32,
-      "OpenBills": 1,
-      "Branch": "RAIPUR",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "SIMON MASIH",
-          "Outstanding": 33201.0,
-          "OpenBills": 1,
-          "OldestDays": 32
-        }
-      ],
-      "Salesman": "SIMON MASIH",
-      "AgeingBand": "31-60",
-      "ContactPerson": "d m motors",
-      "CreditDays": 60,
-      "CreditLimit": 72000.0,
-      "UsedCredit": 33201.0,
-      "RemainingCredit": 38799.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -3637,37 +3593,6 @@
       "CreditLimit": 50000.0,
       "UsedCredit": 23025.0,
       "RemainingCredit": 26975.0,
-      "GSTCategory": "Registered",
-      "Mobile": ""
-    },
-    {
-      "Code": "DJ-027",
-      "Customer": "JAY SHREE AUTO PARTS RAIGARH",
-      "Outstanding": 17473.0,
-      "AgeingDays": 308,
-      "OpenBills": 2,
-      "Branch": "RAIGARH",
-      "SalesmanBreakdown": [
-        {
-          "Salesman": "Default",
-          "Outstanding": 1394.0,
-          "OpenBills": 1,
-          "OldestDays": 308
-        },
-        {
-          "Salesman": "YOGESH PARIHAR",
-          "Outstanding": 16079.0,
-          "OpenBills": 1,
-          "OldestDays": 134
-        }
-      ],
-      "Salesman": "Multiple",
-      "AgeingBand": "90+",
-      "ContactPerson": "NARESH KUMAR YADAV",
-      "CreditDays": 60,
-      "CreditLimit": 50000.0,
-      "UsedCredit": 17473.0,
-      "RemainingCredit": 32527.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -7955,9 +7880,9 @@
     {
       "Code": "DR-119",
       "Customer": "RAJU AUTO ENGG",
-      "Outstanding": 36680.0,
+      "Outstanding": 37826.0,
       "AgeingDays": 40,
-      "OpenBills": 2,
+      "OpenBills": 3,
       "Branch": "KORBA",
       "SalesmanBreakdown": [
         {
@@ -7968,8 +7893,8 @@
         },
         {
           "Salesman": "NITIN SHUKLA",
-          "Outstanding": 9316.0,
-          "OpenBills": 1,
+          "Outstanding": 10462.0,
+          "OpenBills": 2,
           "OldestDays": 1
         }
       ],
@@ -7978,8 +7903,8 @@
       "ContactPerson": "",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 36680.0,
-      "RemainingCredit": 13320.0,
+      "UsedCredit": 37826.0,
+      "RemainingCredit": 12174.0,
       "GSTCategory": "Unregistered",
       "Mobile": ""
     },
@@ -8610,7 +8535,7 @@
     {
       "Code": "DS-005",
       "Customer": "SACHAN AUTOMOBILES",
-      "Outstanding": 91500.0,
+      "Outstanding": 55900.0,
       "AgeingDays": 235,
       "OpenBills": 2,
       "Branch": "AMBIKAPUR",
@@ -8623,7 +8548,7 @@
         },
         {
           "Salesman": "UMASHANKAR YADAV",
-          "Outstanding": 52500.0,
+          "Outstanding": 16900.0,
           "OpenBills": 1,
           "OldestDays": 39
         }
@@ -8633,8 +8558,8 @@
       "ContactPerson": "SACHAN BIHARI LAL",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 91500.0,
-      "RemainingCredit": -41500.0,
+      "UsedCredit": 55900.0,
+      "RemainingCredit": -5900.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -8828,16 +8753,16 @@
     {
       "Code": "DS-260",
       "Customer": "SAINI TURBO DIESELS ENGINEERING, BILASPUR",
-      "Outstanding": 32154.0,
-      "AgeingDays": 18,
-      "OpenBills": 2,
+      "Outstanding": 7660.0,
+      "AgeingDays": 2,
+      "OpenBills": 1,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "PAWAR",
-          "Outstanding": 32154.0,
-          "OpenBills": 2,
-          "OldestDays": 18
+          "Outstanding": 7660.0,
+          "OpenBills": 1,
+          "OldestDays": 2
         }
       ],
       "Salesman": "PAWAR",
@@ -8845,15 +8770,15 @@
       "ContactPerson": "praveen kumar saini",
       "CreditDays": 60,
       "CreditLimit": 70000.0,
-      "UsedCredit": 32154.0,
-      "RemainingCredit": 37846.0,
+      "UsedCredit": 7660.0,
+      "RemainingCredit": 62340.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
     {
       "Code": "DS-001",
       "Customer": "SAPL [CC]",
-      "Outstanding": 70708.0,
+      "Outstanding": 52808.0,
       "AgeingDays": 67,
       "OpenBills": 11,
       "Branch": "RAIPUR",
@@ -8872,7 +8797,7 @@
         },
         {
           "Salesman": "PRAKASH",
-          "Outstanding": 48402.0,
+          "Outstanding": 30502.0,
           "OpenBills": 3,
           "OldestDays": 56
         },
@@ -8900,8 +8825,8 @@
       "ContactPerson": "Somani Auto PVT LTD",
       "CreditDays": 90,
       "CreditLimit": 600000.0,
-      "UsedCredit": 70708.0,
-      "RemainingCredit": 529292.0,
+      "UsedCredit": 52808.0,
+      "RemainingCredit": 547192.0,
       "GSTCategory": "Unregistered",
       "Mobile": ""
     },
@@ -9045,6 +8970,31 @@
       "CreditLimit": 121000.0,
       "UsedCredit": 61286.0,
       "RemainingCredit": 59714.0,
+      "GSTCategory": "Registered",
+      "Mobile": ""
+    },
+    {
+      "Code": "DS-395",
+      "Customer": "SG GREEN LOGISTICS PRIVATE LIMITED",
+      "Outstanding": 12746.0,
+      "AgeingDays": 0,
+      "OpenBills": 1,
+      "Branch": "RAIPUR",
+      "SalesmanBreakdown": [
+        {
+          "Salesman": "MURTI",
+          "Outstanding": 12746.0,
+          "OpenBills": 1,
+          "OldestDays": 0
+        }
+      ],
+      "Salesman": "MURTI",
+      "AgeingBand": "0-30",
+      "ContactPerson": "",
+      "CreditDays": 60,
+      "CreditLimit": 50000.0,
+      "UsedCredit": 12746.0,
+      "RemainingCredit": 37254.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
