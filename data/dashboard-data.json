@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-24T11:30:42+05:30",
+  "updatedAt": "2026-11-24T13:12:49+05:30",
   "summary": {
     "customers": 443,
-    "outstanding": 27263326.84,
+    "outstanding": 27305998.84,
     "above30": 361,
     "above60": 250
   },
@@ -1410,8 +1410,8 @@
       "ContactPerson": "BIMAL SINGH CHINDALIA",
       "CreditDays": 60,
       "CreditLimit": 1000000.0,
-      "UsedCredit": 163828.0,
-      "RemainingCredit": 836172.0,
+      "UsedCredit": 386468.0,
+      "RemainingCredit": 613532.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -1491,8 +1491,8 @@
       "ContactPerson": "ANAND DHANSUKH PAREKH",
       "CreditDays": 60,
       "CreditLimit": 74000.0,
-      "UsedCredit": 22298.0,
-      "RemainingCredit": 51702.0,
+      "UsedCredit": 892.0,
+      "RemainingCredit": 73108.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -1623,15 +1623,15 @@
     {
       "Code": "DC-029",
       "Customer": "CHHATTISGARH AUTOMOBILE , RAIPUR",
-      "Outstanding": 5440.0,
+      "Outstanding": 7606.0,
       "AgeingDays": 56,
-      "OpenBills": 3,
+      "OpenBills": 4,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "ULLAS DOLE",
-          "Outstanding": 5440.0,
-          "OpenBills": 3,
+          "Outstanding": 7606.0,
+          "OpenBills": 4,
           "OldestDays": 56
         }
       ],
@@ -1640,8 +1640,8 @@
       "ContactPerson": "MOHAMMED ZAMEER",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 5440.0,
-      "RemainingCredit": 44560.0,
+      "UsedCredit": 7606.0,
+      "RemainingCredit": 42394.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -5387,15 +5387,15 @@
     {
       "Code": "DM-070",
       "Customer": "MAHALAXMI TURBO ,RAIPUR",
-      "Outstanding": 44496.0,
+      "Outstanding": 69902.0,
       "AgeingDays": 8,
-      "OpenBills": 2,
+      "OpenBills": 3,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
           "Salesman": "PAWAR",
-          "Outstanding": 44496.0,
-          "OpenBills": 2,
+          "Outstanding": 69902.0,
+          "OpenBills": 3,
           "OldestDays": 8
         }
       ],
@@ -5404,8 +5404,8 @@
       "ContactPerson": "raghavendra shanbhag",
       "CreditDays": 60,
       "CreditLimit": 361000.0,
-      "UsedCredit": 44496.0,
-      "RemainingCredit": 316504.0,
+      "UsedCredit": 69902.0,
+      "RemainingCredit": 291098.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
@@ -10566,7 +10566,7 @@
       "Customer": "SOMANI AUTO PVT LTD RAIPUR",
       "Outstanding": 1022149.7,
       "AgeingDays": 118,
-      "OpenBills": 38,
+      "OpenBills": 40,
       "Branch": "RAIPUR - WARRANTY",
       "SalesmanBreakdown": [
         {
@@ -10578,7 +10578,7 @@
         {
           "Salesman": "Unassigned",
           "Outstanding": 1022131.7,
-          "OpenBills": 32,
+          "OpenBills": 34,
           "OldestDays": 118
         }
       ],
@@ -11078,9 +11078,9 @@
       "AgeingBand": "31-60",
       "ContactPerson": "YASHIN NURANI",
       "CreditDays": 60,
-      "CreditLimit": 55000.0,
+      "CreditLimit": 90000.0,
       "UsedCredit": 51077.0,
-      "RemainingCredit": 3923.0,
+      "RemainingCredit": 38923.0,
       "GSTCategory": "Unregistered",
       "Mobile": ""
     },
@@ -11349,9 +11349,9 @@
     {
       "Code": "DU-015",
       "Customer": "UDAY AUTO PARTS, RAIPUR",
-      "Outstanding": 5134.0,
+      "Outstanding": 20234.0,
       "AgeingDays": 7,
-      "OpenBills": 2,
+      "OpenBills": 3,
       "Branch": "RAIPUR",
       "SalesmanBreakdown": [
         {
@@ -11362,8 +11362,8 @@
         },
         {
           "Salesman": "MURTI",
-          "Outstanding": 3434.0,
-          "OpenBills": 1,
+          "Outstanding": 18534.0,
+          "OpenBills": 2,
           "OldestDays": 5
         }
       ],
@@ -11372,8 +11372,8 @@
       "ContactPerson": "MR. YOGESH SAHU",
       "CreditDays": 60,
       "CreditLimit": 50000.0,
-      "UsedCredit": 5134.0,
-      "RemainingCredit": 44866.0,
+      "UsedCredit": 20234.0,
+      "RemainingCredit": 29766.0,
       "GSTCategory": "Registered",
       "Mobile": ""
     },
